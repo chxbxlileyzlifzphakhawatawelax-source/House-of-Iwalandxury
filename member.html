@@ -2,25 +2,136 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Member</title>
+<title>Members</title>
 
 <style>
-body { margin:0; background:black; color:white; font-family:Arial; }
-.header { text-align:center; font-size:30px; padding:20px; text-shadow:0 0 20px red; }
-.container { display:flex; flex-wrap:wrap; justify-content:center; gap:30px; padding:40px; }
-.card { width:200px; border:2px solid white; padding:15px; text-align:center; transition:0.3s; }
-.card:hover { transform:scale(1.1); box-shadow:0 0 20px red; }
-.icon { font-size:80px; }
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: url('bg.gif') center/cover no-repeat fixed;
+    background-color: black;
+    color: white;
+}
+
+/* ดาร์คลง */
+body::before {
+    content: "";
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.75);
+    top: 0;
+    left: 0;
+}
+
+/* TITLE */
+h1 {
+    text-align: center;
+    margin-top: 40px;
+    font-size: 55px;
+    color: red;
+    text-shadow: 0 0 20px red, 0 0 40px red;
+    position: relative;
+    z-index: 1;
+}
+
+/* GRID */
+.container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 40px;
+    padding: 60px;
+    position: relative;
+    z-index: 1;
+}
+
+/* CARD */
+.card {
+    background: rgba(0,0,0,0.85);
+    border: 2px solid white;
+    padding: 15px;
+    text-align: center;
+    transition: 0.3s;
+}
+
+.card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 30px red;
+}
+
+/* รูป */
+.card img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+    border: 2px solid white;
+}
+
+/* ชื่อ */
+.name {
+    font-size: 20px;
+    margin-top: 10px;
+    font-weight: bold;
+}
+
+/* role */
+.role {
+    font-size: 14px;
+    color: #aaa;
+}
+
+/* ปุ่ม */
+.btn {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 6px 14px;
+    border: 1px solid white;
+    color: white;
+    text-decoration: none;
+    transition: 0.2s;
+}
+
+.btn:hover {
+    background: red;
+    box-shadow: 0 0 10px red;
+}
 </style>
 </head>
 
 <body>
 
-<div class="header">MEMBER</div>
+<h1>FOUNDER</h1> <!-- เปลี่ยนตรงนี้ -->
 
 <div class="container">
-    <div class="card"><div class="icon">✶</div><div>Member1</div></div>
-    <div class="card"><div class="icon">✶</div><div>Member2</div></div>
+
+    <div class="card">
+        <img src="profile.gif">
+        <div class="name">TK PHUPRADUB</div>
+        <div class="role">Founder</div>
+        <a href="#" class="btn">Facebook</a>
+    </div>
+
+    <div class="card">
+        <img src="profile.gif">
+        <div class="name">SKY PHUPRADUB</div>
+        <div class="role">Founder</div>
+        <a href="#" class="btn">Facebook</a>
+    </div>
+
+    <div class="card">
+        <img src="profile.gif">
+        <div class="name">ARDUM PHUPRADUB</div>
+        <div class="role">Founder</div>
+        <a href="#" class="btn">Facebook</a>
+    </div>
+
+    <div class="card">
+        <img src="profile.gif">
+        <div class="name">MILL PHUPRADUB</div>
+        <div class="role">Founder</div>
+        <a href="#" class="btn">Facebook</a>
+    </div>
+
 </div>
 
 </body>
