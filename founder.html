@@ -2,18 +2,23 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Founder</title>
+<title>FOUNDER</title>
 
 <style>
-body {
+* {
     margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
     font-family: Arial;
     color: white;
     text-align: center;
     background: url("bg.gif") no-repeat center center/cover;
 }
 
-/* overlay ลดแสง */
+/* ลดแสงพื้นหลัง */
 body::before {
     content: "";
     position: fixed;
@@ -25,8 +30,9 @@ body::before {
     z-index: -1;
 }
 
+/* หัวข้อ */
 h1 {
-    margin-top: 40px;
+    margin-top: 50px;
     font-size: 60px;
     color: red;
     text-shadow: 0 0 20px red, 0 0 40px red;
@@ -37,7 +43,7 @@ h1 {
     display: flex;
     justify-content: center;
     gap: 40px;
-    margin-top: 50px;
+    margin-top: 60px;
     flex-wrap: wrap;
 }
 
@@ -58,7 +64,7 @@ h1 {
 /* รูป */
 .card img {
     width: 100%;
-    height: 220px;
+    height: 230px;
     object-fit: cover;
     border: 2px solid white;
 }
@@ -74,7 +80,6 @@ h1 {
 .role {
     font-size: 14px;
     color: #aaa;
-    margin-bottom: 10px;
 }
 
 /* ปุ่ม */
@@ -82,6 +87,7 @@ h1 {
     display: block;
     border: 1px solid white;
     padding: 8px;
+    margin-top: 10px;
     text-decoration: none;
     color: white;
     transition: 0.3s;
@@ -91,41 +97,37 @@ h1 {
     background: red;
 }
 </style>
-
 </head>
+
 <body>
 
 <h1>FOUNDER</h1>
 
 <div class="container">
 
-    <!-- 1 -->
     <div class="card">
-        <img src="9BE40F5A-265A-4BD0-A91B-D18471003A82.gif">
+        <img src="img.gif">
         <div class="name">TK PHUPRADUB</div>
         <div class="role">Founder</div>
         <a href="#" class="btn">Facebook</a>
     </div>
 
-    <!-- 2 -->
     <div class="card">
-        <img src="9BE40F5A-265A-4BD0-A91B-D18471003A82.gif">
+        <img src="img.gif">
         <div class="name">SKY PHUPRADUB</div>
         <div class="role">Founder</div>
         <a href="#" class="btn">Facebook</a>
     </div>
 
-    <!-- 3 -->
     <div class="card">
-        <img src="9BE40F5A-265A-4BD0-A91B-D18471003A82.gif">
+        <img src="img.gif">
         <div class="name">ARDUM PHUPRADUB</div>
         <div class="role">Founder</div>
         <a href="#" class="btn">Facebook</a>
     </div>
 
-    <!-- 4 -->
     <div class="card">
-        <img src="9BE40F5A-265A-4BD0-A91B-D18471003A82.gif">
+        <img src="img.gif">
         <div class="name">MILL PHUPRADUB</div>
         <div class="role">Founder</div>
         <a href="#" class="btn">Facebook</a>
