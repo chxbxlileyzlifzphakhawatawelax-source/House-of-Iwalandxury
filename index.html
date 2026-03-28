@@ -20,37 +20,7 @@ body::after {
   width: 100%;
   height: 100%;
   pointer-events: none;
-  background: radial-gradient(circle at var(--x) var(--y), transparent 80px, black 300px);
-}
-
-/* ตา */
-.eye {
-  position: absolute;
-  width: 20px;
-  height: 10px;
-  background: white;
-  border-radius: 50%;
-  opacity: 0.2;
-  animation: blink 5s infinite;
-}
-
-@keyframes blink {
-  0%, 90%, 100% { height: 10px; }
-  95% { height: 1px; }
-}
-
-/* เลือดไหล */
-.blood {
-  position: fixed;
-  top: -100px;
-  width: 5px;
-  height: 100px;
-  background: red;
-  animation: drip linear infinite;
-}
-
-@keyframes drip {
-  to { transform: translateY(110vh); }
+  background: radial-gradient(circle at var(--x) var(--y), transparent 120px, black 400px);
 }
 
 /* center */
@@ -60,17 +30,20 @@ body::after {
   left: 50%;
   transform: translate(-50%, -50%);
   text-align: center;
+  z-index: 2;
 }
 
-/* glitch */
+/* glitch subtle */
 h1 {
-  animation: glitch 1.5s infinite;
+  letter-spacing: 4px;
+  animation: glitch 4s infinite;
 }
 
 @keyframes glitch {
-  0% { text-shadow: 2px 0 red, -2px 0 blue; }
-  50% { text-shadow: -2px 0 red, 2px 0 blue; }
-  100% { text-shadow: 0 0 10px white; }
+  0%,100% { opacity: 1; }
+  49% { opacity: 1; }
+  50% { opacity: 0.2; }
+  51% { opacity: 1; }
 }
 
 /* ปุ่ม */
@@ -79,15 +52,34 @@ h1 {
   margin: 10px auto;
   padding: 10px;
   width: 250px;
-  background: black;
+  background: transparent;
   border: 1px solid white;
   color: white;
   cursor: pointer;
 }
 
 .menu button:hover {
-  background: red;
-  box-shadow: 0 0 20px red;
+  background: white;
+  color: black;
+}
+
+/* เงา entity */
+.entity {
+  position: fixed;
+  width: 300px;
+  opacity: 0.05;
+  pointer-events: none;
+  transition: transform 0.2s;
+}
+
+/* jump scare */
+.scare {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background: url('https://i.imgur.com/8Q2QZ6F.png') center/cover;
+  opacity: 0;
+  z-index: 999;
 }
 </style>
 </head>
@@ -106,35 +98,67 @@ h1 {
   </div>
 </div>
 
-<!-- เสียงหลอน -->
-<audio autoplay loop>
-  <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3">
+<img id="entity" class="entity" src="https://i.imgur.com/Z6XbKQp.png">
+<div id="scare" class="scare"></div>
+
+<audio id="breath" loop autoplay>
+  <source src="https://www.soundjay.com/human/sounds/human-breathing-01.mp3">
+</audio>
+
+<audio id="whisper">
+  <source src="https://www.soundjay.com/human/sounds/whisper-01.mp3">
+</audio>
+
+<audio id="scream">
+  <source src="https://www.soundjay.com/human/sounds/scream-01.mp3">
 </audio>
 
 <script>
-/* spotlight เมาส์ */
+const entity = document.getElementById("entity");
+const scare = document.getElementById("scare");
+const whisper = document.getElementById("whisper");
+const scream = document.getElementById("scream");
+
+/* spotlight + entity ตามเมาส์ */
 document.addEventListener("mousemove", e => {
   document.body.style.setProperty('--x', e.clientX + 'px');
   document.body.style.setProperty('--y', e.clientY + 'px');
+
+  entity.style.left = e.clientX - 150 + "px";
+  entity.style.top = e.clientY - 150 + "px";
 });
 
-/* สร้างตา */
-for (let i = 0; i < 20; i++) {
-  let eye = document.createElement("div");
-  eye.className = "eye";
-  eye.style.top = Math.random() * 100 + "vh";
-  eye.style.left = Math.random() * 100 + "vw";
-  document.body.appendChild(eye);
-}
+/* entity โผล่ชัดขึ้นเป็นพักๆ */
+function reveal() {
+  entity.style.opacity = 0.3;
 
-/* เลือด */
-for (let i = 0; i < 30; i++) {
-  let b = document.createElement("div");
-  b.className = "blood";
-  b.style.left = Math.random() * 100 + "vw";
-  b.style.animationDuration = (2 + Math.random() * 3) + "s";
-  document.body.appendChild(b);
+  setTimeout(() => {
+    entity.style.opacity = 0.05;
+  }, 2000);
+
+  setTimeout(reveal, 5000 + Math.random() * 8000);
 }
+reveal();
+
+/* เสียงกระซิบสุ่ม */
+function whisperSound() {
+  whisper.play();
+  setTimeout(whisperSound, 7000 + Math.random() * 10000);
+}
+setTimeout(whisperSound, 5000);
+
+/* jump scare ฉลาด */
+function jumpScare() {
+  scare.style.opacity = 1;
+  scream.play();
+
+  setTimeout(() => {
+    scare.style.opacity = 0;
+  }, 300);
+
+  setTimeout(jumpScare, 20000 + Math.random() * 20000);
+}
+setTimeout(jumpScare, 15000);
 </script>
 
 </body>
