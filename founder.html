@@ -20,7 +20,6 @@ body::after {
     background: rgba(0,0,0,0.7);
     top: 0;
     left: 0;
-    z-index: 0;
 }
 
 h1 {
@@ -29,18 +28,14 @@ h1 {
     font-size: 50px;
     color: red;
     text-shadow: 0 0 20px red;
-    position: relative;
-    z-index: 1;
 }
 
 .container {
     display: flex;
     justify-content: center;
-    flex-wrap: wrap;
     gap: 40px;
     margin-top: 80px;
-    position: relative;
-    z-index: 1;
+    flex-wrap: wrap;
 }
 
 .card {
@@ -64,9 +59,10 @@ h1 {
     border: 1px solid white;
 }
 
-/* 🔥 ตรงนี้แก้แล้ว ใช้ profile.gif */
-.card img {
-    content: url('profile.gif');
+/* 🔥 กันรูปไม่ขึ้น */
+.card img:after {
+    content: "NO IMAGE";
+    color: red;
 }
 
 .name {
@@ -94,7 +90,6 @@ h1 {
     color: black;
 }
 </style>
-
 </head>
 
 <body>
