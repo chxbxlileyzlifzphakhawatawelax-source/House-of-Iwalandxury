@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
 <meta charset="UTF-8">
 <title>FOUNDER</title>
@@ -11,12 +11,21 @@
     box-sizing: border-box;
 }
 
-body {
-    min-height: 100vh;
-    font-family: Arial, sans-serif;
-    background: url("bg.gif") no-repeat center center fixed;
-    background-size: cover;
+/* 🔥 FIX ช่องล่างหาย 100% */
+html, body {
+    height: 100%;
+    background: black;
+    font-family: Arial;
     color: white;
+}
+
+/* 🔥 background เต็มจอจริง */
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background: url("./bg.gif") center center / cover no-repeat;
+    z-index: -1;
 }
 
 /* TITLE */
@@ -30,47 +39,27 @@ h1 {
 
 /* CONTAINER */
 .container {
+    min-height: calc(100vh - 120px);
     display: flex;
     justify-content: center;
     align-items: center;
-    flex-wrap: wrap;
     gap: 40px;
-    padding: 60px 20px;
+    flex-wrap: wrap;
+    padding: 40px 20px;
 }
 
 /* CARD */
 .card {
     width: 230px;
-    padding: 20px;
+    padding: 15px;
     border: 2px solid white;
     text-align: center;
-    backdrop-filter: blur(8px);
-    background: rgba(0,0,0,0.5);
+    background: rgba(0,0,0,0.6);
+    backdrop-filter: blur(6px);
     transition: 0.4s;
-    position: relative;
-    overflow: hidden;
 }
 
-/* glow effect */
-.card::before {
-    content: "";
-    position: absolute;
-    width: 200%;
-    height: 200%;
-    background: linear-gradient(45deg, transparent, red, transparent);
-    top: -50%;
-    left: -50%;
-    transform: rotate(0deg);
-    transition: 0.6s;
-    opacity: 0;
-}
-
-.card:hover::before {
-    transform: rotate(180deg);
-    opacity: 0.3;
-}
-
-/* hover */
+/* HOVER เท่ๆ */
 .card:hover {
     transform: scale(1.05);
     box-shadow: 0 0 25px red;
@@ -84,18 +73,15 @@ h1 {
     border: 2px solid white;
 }
 
-/* NAME */
+/* TEXT */
 .name {
     margin-top: 10px;
     font-weight: bold;
-    font-size: 16px;
 }
 
-/* ROLE */
 .role {
     font-size: 13px;
     color: #aaa;
-    margin-bottom: 10px;
 }
 
 /* BUTTON */
@@ -114,45 +100,41 @@ h1 {
     box-shadow: 0 0 15px red;
 }
 </style>
-
 </head>
+
 <body>
 
 <h1>LEADER</h1>
 
 <div class="container">
 
-    <!-- CARD 1 -->
-    <div class="card">
-        <img src="profile.gif">
-        <div class="name">TK PHUPRADUB</div>
-        <div class="role">Founder</div>
-        <a href="#" class="btn">Facebook</a>
-    </div>
+<div class="card">
+<img src="./profile.png">
+<div class="name">TK PHUPRADUB</div>
+<div class="role">Founder</div>
+<a href="#" class="btn">Facebook</a>
+</div>
 
-    <!-- CARD 2 -->
-    <div class="card">
-        <img src="profile.gif">
-        <div class="name">SKY PHUPRADUB</div>
-        <div class="role">Founder</div>
-        <a href="#" class="btn">Facebook</a>
-    </div>
+<div class="card">
+<img src="./profile.png">
+<div class="name">SKY PHUPRADUB</div>
+<div class="role">Founder</div>
+<a href="#" class="btn">Facebook</a>
+</div>
 
-    <!-- CARD 3 -->
-    <div class="card">
-        <img src="profile.gif">
-        <div class="name">ARDUM PHUPRADUB</div>
-        <div class="role">Founder</div>
-        <a href="#" class="btn">Facebook</a>
-    </div>
+<div class="card">
+<img src="./profile.png">
+<div class="name">ARDUM PHUPRADUB</div>
+<div class="role">Founder</div>
+<a href="#" class="btn">Facebook</a>
+</div>
 
-    <!-- CARD 4 -->
-    <div class="card">
-        <img src="profile.gif">
-        <div class="name">MILL PHUPRADUB</div>
-        <div class="role">Founder</div>
-        <a href="#" class="btn">Facebook</a>
-    </div>
+<div class="card">
+<img src="./profile.png">
+<div class="name">MILL PHUPRADUB</div>
+<div class="role">Founder</div>
+<a href="#" class="btn">Facebook</a>
+</div>
 
 </div>
 
