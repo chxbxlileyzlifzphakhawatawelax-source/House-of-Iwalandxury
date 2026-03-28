@@ -13,37 +13,74 @@ body {
   overflow: hidden;
 }
 
-/* spotlight ตามเมาส์ */
-body::after {
+/* 🔴 แสงแดงไหล */
+body::before {
   content: "";
+  position: fixed;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(255,0,0,0.1), transparent 70%);
+  animation: redflow 8s linear infinite;
+}
+
+@keyframes redflow {
+  from { transform: translate(0,0); }
+  to { transform: translate(-400px,-400px); }
+}
+
+/* 🌫 ควัน */
+.smoke {
+  position: fixed;
+  width: 200%;
+  height: 200%;
+  background: url("https://www.transparenttextures.com/patterns/smoke.png");
+  opacity: 0.05;
+  animation: smokeMove 60s linear infinite;
+}
+
+@keyframes smokeMove {
+  from { transform: translate(0,0); }
+  to { transform: translate(-500px,-500px); }
+}
+
+/* ⚡ ฟ้าผ่า */
+.lightning {
   position: fixed;
   width: 100%;
   height: 100%;
-  pointer-events: none;
-  background: radial-gradient(circle at var(--x) var(--y), transparent 120px, black 400px);
+  background: white;
+  opacity: 0;
+  z-index: 5;
 }
 
-/* center */
+.flash {
+  animation: flash 0.2s;
+}
+
+@keyframes flash {
+  0% { opacity: 0; }
+  50% { opacity: 0.8; }
+  100% { opacity: 0; }
+}
+
+/* กลางจอ */
 .center {
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  text-align: center;
   z-index: 2;
+  text-align: center;
 }
 
-/* glitch subtle */
+/* glitch เบา */
 h1 {
   letter-spacing: 4px;
   animation: glitch 4s infinite;
 }
 
 @keyframes glitch {
-  0%,100% { opacity: 1; }
-  49% { opacity: 1; }
-  50% { opacity: 0.2; }
-  51% { opacity: 1; }
+  50% { opacity: 0.3; }
 }
 
 /* ปุ่ม */
@@ -59,25 +96,15 @@ h1 {
 }
 
 .menu button:hover {
-  background: white;
-  color: black;
+  background: red;
 }
 
-/* เงา entity */
-.entity {
-  position: fixed;
-  width: 300px;
-  opacity: 0.05;
-  pointer-events: none;
-  transition: transform 0.2s;
-}
-
-/* jump scare */
+/* 👻 jump scare */
 .scare {
   position: fixed;
   width: 100%;
   height: 100%;
-  background: url('https://i.imgur.com/8Q2QZ6F.png') center/cover;
+  background: url('ghost.png') center/contain no-repeat;
   opacity: 0;
   z-index: 999;
 }
@@ -85,6 +112,9 @@ h1 {
 </head>
 
 <body>
+
+<div class="smoke"></div>
+<div id="lightning" class="lightning"></div>
 
 <div class="center">
   <h1>House of Iwalandxury</h1>
@@ -98,15 +128,10 @@ h1 {
   </div>
 </div>
 
-<img id="entity" class="entity" src="https://i.imgur.com/Z6XbKQp.png">
 <div id="scare" class="scare"></div>
 
-<audio id="breath" loop autoplay>
-  <source src="https://www.soundjay.com/human/sounds/human-breathing-01.mp3">
-</audio>
-
-<audio id="whisper">
-  <source src="https://www.soundjay.com/human/sounds/whisper-01.mp3">
+<audio id="thunder">
+  <source src="https://www.soundjay.com/nature/sounds/thunder-01.mp3">
 </audio>
 
 <audio id="scream">
@@ -114,51 +139,36 @@ h1 {
 </audio>
 
 <script>
-const entity = document.getElementById("entity");
+const lightning = document.getElementById("lightning");
+const thunder = document.getElementById("thunder");
 const scare = document.getElementById("scare");
-const whisper = document.getElementById("whisper");
 const scream = document.getElementById("scream");
 
-/* spotlight + entity ตามเมาส์ */
-document.addEventListener("mousemove", e => {
-  document.body.style.setProperty('--x', e.clientX + 'px');
-  document.body.style.setProperty('--y', e.clientY + 'px');
-
-  entity.style.left = e.clientX - 150 + "px";
-  entity.style.top = e.clientY - 150 + "px";
-});
-
-/* entity โผล่ชัดขึ้นเป็นพักๆ */
-function reveal() {
-  entity.style.opacity = 0.3;
+/* ⚡ ฟ้าผ่า */
+function lightningFlash() {
+  lightning.classList.add("flash");
+  thunder.play();
 
   setTimeout(() => {
-    entity.style.opacity = 0.05;
-  }, 2000);
+    lightning.classList.remove("flash");
+  }, 200);
 
-  setTimeout(reveal, 5000 + Math.random() * 8000);
+  setTimeout(lightningFlash, 5000 + Math.random() * 5000);
 }
-reveal();
 
-/* เสียงกระซิบสุ่ม */
-function whisperSound() {
-  whisper.play();
-  setTimeout(whisperSound, 7000 + Math.random() * 10000);
-}
-setTimeout(whisperSound, 5000);
+lightningFlash();
 
-/* jump scare ฉลาด */
+/* 👻 jump scare ทุก 10 วิ */
 function jumpScare() {
   scare.style.opacity = 1;
   scream.play();
 
   setTimeout(() => {
     scare.style.opacity = 0;
-  }, 300);
-
-  setTimeout(jumpScare, 20000 + Math.random() * 20000);
+  }, 400);
 }
-setTimeout(jumpScare, 15000);
+
+setInterval(jumpScare, 10000);
 </script>
 
 </body>
