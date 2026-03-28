@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Founder</title>
+
+<style>
+body {
+    margin: 0;
+    background: black;
+    color: white;
+    font-family: Arial;
+}
+
+/* header */
+.header {
+    text-align: center;
+    font-size: 30px;
+    padding: 20px;
+    text-shadow: 0 0 20px red;
+}
+
+/* grid */
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 30px;
+    padding: 40px;
+}
+
+/* card */
+.card {
+    width: 200px;
+    border: 2px solid white;
+    padding: 15px;
+    text-align: center;
+    transition: 0.3s;
+}
+
+.card:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 20px red;
+}
+
+.icon {
+    font-size: 80px;
+}
+
+.name {
+    margin-top: 10px;
+}
+
+.role {
+    font-size: 12px;
+    opacity: 0.7;
+}
+</style>
+</head>
+
+<body>
+
+<div class="header">FOUNDER</div>
+
+<div class="container">
+    <div class="card">
+        <div class="icon">✶</div>
+        <div class="name">TK</div>
+        <div class="role">Founder</div>
+    </div>
+</div>
+
+</body>
+</html>
