@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>House of Iwalandxury</title>
+
+<style>
+body {
+  margin: 0;
+  background: black;
+  color: white;
+  font-family: monospace;
+  overflow: hidden;
+}
+
+canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+
+.center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+h1 {
+  letter-spacing: 4px;
+}
+
+.menu button {
+  display: block;
+  margin: 10px auto;
+  padding: 10px;
+  width: 250px;
+  background: transparent;
+  border: 1px solid white;
+  color: white;
+  cursor: pointer;
+}
+
+.menu button:hover {
+  background: white;
+  color: black;
+}
+
+.music {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  border: 1px solid white;
+  padding: 10px;
+}
+</style>
+
+</head>
+<body>
+
+<canvas id="stars"></canvas>
+
+<div class="center">
+  <h1>House of Iwalandxury</h1>
+  <p>Iwalandxury<br>NeverBroke<br>Never Give Up</p>
+
+  <div class="menu">
+    <button>FOUNDER</button>
+    <button>NEVERBROKE</button>
+    <button>LEADER</button>
+    <button>MEMBER</button>
+  </div>
+</div>
+
+<div class="music">
+  <p>PLAYING</p>
+  <button onclick="toggle()">PAUSE</button>
+</div>
+
+<audio id="audio" autoplay loop>
+  <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3">
+</audio>
+
+<script>
+const canvas = document.getElementById("stars");
+const ctx = canvas.getContext("2d");
+
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+
+let stars = [];
+for (let i = 0; i < 150; i++) {
+  stars.push({
+    x: Math.random() * canvas.width,
+    y: Math.random() * canvas.height,
+    size: Math.random() * 2
+  });
+}
+
+function draw() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  ctx.fillStyle = "white";
+
+  stars.forEach(s => {
+    ctx.beginPath();
+    ctx.arc(s.x, s.y, s.size, 0, Math.PI * 2);
+    ctx.fill();
+
+    s.y += 0.3;
+    if (s.y > canvas.height) {
+      s.y = 0;
+      s.x = Math.random() * canvas.width;
+    }
+  });
+
+  requestAnimationFrame(draw);
+}
+draw();
+
+const audio = document.getElementById("audio");
+function toggle() {
+  if (audio.paused) audio.play();
+  else audio.pause();
+}
+</script>
+
+</body>
+</html>
