@@ -5,67 +5,54 @@
 <title>House of Iwalandxury</title>
 
 <style>
-body {
+html, body {
   margin: 0;
-  background: url('bg.gif') center center no-repeat;
-  background-size: cover;
-  background-attachment: fixed;
-  color: white;
-  font-family: monospace;
+  padding: 0;
+  height: 100%;
   overflow: hidden;
 }
-}
+
+body {
+  background: url('bg.gif') no-repeat center center fixed;
+  background-size: cover;
+  color: white;
+  font-family: monospace;
 }
 
-/* 🔴 แสงแดงไหล */
-body::after {
+/* มืด + แดง */
+body::before {
   content: "";
   position: fixed;
   width: 100%;
   height: 100%;
   background: rgba(0,0,0,0.6);
-  box-shadow: inset 0 0 200px rgba(255,0,0,0.2);
-  pointer-events: none;
+  box-shadow: inset 0 0 200px rgba(255,0,0,0.3);
+  top: 0;
+  left: 0;
 }
 
-@keyframes redflow {
-  from { transform: translate(0,0); }
-  to { transform: translate(-400px,-400px); }
-}
-
-/* 🌫 ควัน */
-.smoke {
-  position: fixed;
-  width: 200%;
-  height: 200%;
-  background: url("https://www.transparenttextures.com/patterns/smoke.png");
-  opacity: 0.05;
-  animation: smokeMove 60s linear infinite;
-}
-
-@keyframes smokeMove {
-  from { transform: translate(0,0); }
-  to { transform: translate(-500px,-500px); }
-}
-
-/* ⚡ ฟ้าผ่า */
-.lightning {
+/* ฟ้าผ่า */
+.flash {
   position: fixed;
   width: 100%;
   height: 100%;
   background: white;
   opacity: 0;
-  z-index: 5;
+  pointer-events: none;
 }
 
-.flash {
-  animation: flash 0.2s;
+/* ควัน */
+.smoke {
+  position: fixed;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(255,255,255,0.05), transparent);
+  animation: smokeMove 20s linear infinite;
 }
 
-@keyframes flash {
-  0% { opacity: 0; }
-  50% { opacity: 0.8; }
-  100% { opacity: 0; }
+@keyframes smokeMove {
+  from { transform: translate(0,0); }
+  to { transform: translate(-200px,-200px); }
 }
 
 /* กลางจอ */
@@ -74,21 +61,14 @@ body::after {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  z-index: 2;
   text-align: center;
+  z-index: 2;
 }
 
-/* glitch เบา */
 h1 {
   letter-spacing: 4px;
-  animation: glitch 4s infinite;
 }
 
-@keyframes glitch {
-  50% { opacity: 0.3; }
-}
-
-/* ปุ่ม */
 .menu button {
   display: block;
   margin: 10px auto;
@@ -101,25 +81,29 @@ h1 {
 }
 
 .menu button:hover {
-  background: red;
+  background: white;
+  color: black;
 }
 
-/* 👻 jump scare */
-.scare {
+/* jumpscare */
+#ghost {
   position: fixed;
+  top: 0;
+  left: 0;
   width: 100%;
   height: 100%;
-  background: url('ghost.png') center/contain no-repeat;
+  background: url('https://i.imgur.com/8Q2QZ6M.png') center/cover no-repeat;
   opacity: 0;
+  pointer-events: none;
   z-index: 999;
 }
 </style>
-</head>
 
+</head>
 <body>
 
+<div class="flash" id="flash"></div>
 <div class="smoke"></div>
-<div id="lightning" class="lightning"></div>
 
 <div class="center">
   <h1>House of Iwalandxury</h1>
@@ -133,47 +117,29 @@ h1 {
   </div>
 </div>
 
-<div id="scare" class="scare"></div>
-
-<audio id="thunder">
-  <source src="https://www.soundjay.com/nature/sounds/thunder-01.mp3">
-</audio>
-
-<audio id="scream">
-  <source src="https://www.soundjay.com/human/sounds/scream-01.mp3">
-</audio>
+<div id="ghost"></div>
 
 <script>
-const lightning = document.getElementById("lightning");
-const thunder = document.getElementById("thunder");
-const scare = document.getElementById("scare");
-const scream = document.getElementById("scream");
-
-/* ⚡ ฟ้าผ่า */
-function lightningFlash() {
-  lightning.classList.add("flash");
-  thunder.play();
-
-  setTimeout(() => {
-    lightning.classList.remove("flash");
-  }, 200);
-
-  setTimeout(lightningFlash, 5000 + Math.random() * 5000);
+// ⚡ ฟ้าผ่า
+function lightning() {
+  const flash = document.getElementById("flash");
+  flash.style.opacity = 1;
+  setTimeout(() => flash.style.opacity = 0, 100);
 }
 
-lightningFlash();
+// สุ่มฟ้าผ่า
+setInterval(() => {
+  if (Math.random() > 0.7) lightning();
+}, 2000);
 
-/* 👻 jump scare ทุก 10 วิ */
-function jumpScare() {
-  scare.style.opacity = 1;
-  scream.play();
-
-  setTimeout(() => {
-    scare.style.opacity = 0;
-  }, 400);
+// 👻 jumpscare
+function scare() {
+  const ghost = document.getElementById("ghost");
+  ghost.style.opacity = 1;
+  setTimeout(() => ghost.style.opacity = 0, 300);
 }
 
-setInterval(jumpScare, 10000);
+setInterval(scare, 10000);
 </script>
 
 </body>
