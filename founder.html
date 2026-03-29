@@ -1,118 +1,103 @@
 <!DOCTYPE html>
-<html lang="th">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <title>Iwalandxury</title>
 
 <style>
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: Arial, sans-serif;
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, sans-serif;
 }
 
-body {
-    height: 100vh;
-    background: url("bg.gif") no-repeat center center/cover;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: white;
+body{
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background:black;
+    color:white;
+    overflow:hidden;
 }
 
-/* overlay กันจอดำ */
-body::before {
-    content: "";
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    background: rgba(0,0,0,0.6);
-    z-index: 0;
+/* พื้นหลัง */
+body::before{
+    content:"";
+    position:fixed;
+    width:100%;
+    height:100%;
+    background:url('profile.gif') center/cover no-repeat;
+    opacity:0.15;
+    z-index:-1;
 }
 
-/* container */
-.container {
-    position: relative;
-    z-index: 1;
-    text-align: center;
+/* Title */
+h1{
+    position:absolute;
+    top:40px;
+    color:red;
+    font-size:40px;
+    text-shadow:0 0 20px red;
 }
 
-/* title */
-h1 {
-    color: red;
-    font-size: 50px;
-    margin-bottom: 40px;
-    text-shadow: 0 0 20px red;
+/* Card */
+.card{
+    text-align:center;
+    border:2px solid white;
+    padding:20px;
+    background:rgba(0,0,0,0.7);
+    box-shadow:0 0 20px rgba(255,255,255,0.2);
 }
 
-/* card */
-.card {
-    border: 2px solid white;
-    padding: 20px;
-    width: 220px;
-    margin: auto;
-    background: rgba(0,0,0,0.7);
-    transition: 0.3s;
+/* รูป */
+.card img{
+    width:150px;
+    height:150px;
+    object-fit:cover;
+    border:2px solid white;
+    margin-bottom:10px;
 }
 
-.card:hover {
-    transform: scale(1.05);
-    box-shadow: 0 0 20px white;
+/* ชื่อ */
+.name{
+    font-size:18px;
+    margin-bottom:10px;
 }
 
-/* image */
-.card img {
-    width: 100%;
-    border: 2px solid white;
-    cursor: pointer;
+/* ปุ่มเฟส */
+.fb{
+    display:inline-block;
+    padding:8px 20px;
+    border:1px solid white;
+    color:#1877f2;
+    text-decoration:none;
+    transition:0.3s;
 }
 
-/* name */
-.name {
-    margin-top: 10px;
-    font-weight: bold;
-}
-
-/* facebook icon */
-.fb {
-    margin-top: 10px;
-    font-size: 18px;
-}
-
-.fb a {
-    color: #1877f2;
-    text-decoration: none;
-}
-
-.fb a:hover {
-    text-shadow: 0 0 10px #1877f2;
+.fb:hover{
+    background:#1877f2;
+    color:white;
+    box-shadow:0 0 10px #1877f2;
 }
 </style>
-
 </head>
 
 <body>
 
-<div class="container">
-    <h1>IWALANDXURY</h1>
+<h1>FOUNDER</h1>
 
-    <div class="card">
-        <!-- กดรูปไป Facebook -->
-        <a href="https://www.facebook.com/share/1NNQojV3R2/?mibextid=wwXIfr" target="_blank">
-            <img src="img.jpg">
-        </a>
+<div class="card">
+    <a href="https://www.facebook.com/share/1NNQojV3R2/?mibextid=wwXIfr" target="_blank">
+        <img src="profile.gif" alt="profile">
+    </a>
 
-        <div class="name">Bxlileyzlifz Iwalandxury</div>
+    <div class="name">Bxlileyzlifz Iwalandxury</div>
 
-        <!-- โลโก้ Facebook -->
-        <div class="fb">
-            <a href="https://www.facebook.com/share/1NNQojV3R2/?mibextid=wwXIfr" target="_blank">
-                🔵 Facebook
-            </a>
-        </div>
-    </div>
-
+    <a class="fb" href="https://www.facebook.com/share/1NNQojV3R2/?mibextid=wwXIfr" target="_blank">
+        ● Facebook
+    </a>
 </div>
 
 </body>
